@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////
-// WorkSho#1  :  Part1
+// WorkSho#1  :  Part 1
 // Full Name  :  Xiaoyue Zhao
 // Student ID :  124899212
 // Email      :  xzhao109@myseneca.ca
