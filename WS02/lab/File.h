@@ -11,4 +11,5 @@ namespace sdds
    bool read(int &studentNumber);
    bool read(char &studentGrade);
 }
+
 #endif // !SDDS_FILE_H_
