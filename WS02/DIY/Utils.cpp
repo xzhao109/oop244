@@ -12,8 +12,12 @@
 
 namespace sdds
 {
+<<<<<<< HEAD
     Utils U; // create global Utils object "U"
 
+=======
+   Utils U;  // global Utils object "U"
+>>>>>>> d1765f5a53f7f75439193e9aa74d52a345a6af8c
     int Utils::strlen(const char *str)
     {
         int len = 0;
