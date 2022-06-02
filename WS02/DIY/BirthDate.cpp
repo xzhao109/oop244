@@ -14,8 +14,8 @@ namespace sdds
     bool beginSearch(const char *filename)
     {
         bool ok = false;
-
-        if (fopen(filename, "r"))
+        fptr = fopen(filename, "r");
+        if (fptr)
         {
             cout << "BirthDate Search Program\n";
             ok = true;
@@ -25,43 +25,42 @@ namespace sdds
             cout << "Data file \"" << filename << "\" not found!";
             ok = false;
         }
-        // close file
-        if (fptr)
-            fclose(fptr);
         return ok;
     }
 
     bool readBirthDate(int month)
     {
+       char name[128]{};
+       int d = 0, m = 0, y = 0;
         /// calculate total records
         char ch;
-        int noOfFileRecs = 0;
-        while (fscanf(fptr, "%c", &ch) == 1)
+        noOfMatchedRecs = 0;
+        while (fscanf(fptr, "%[^,],%d/%d/%d\n", name, &m, &d, &y) == 4)
         {
-            noOfFileRecs += (ch == '\n');
+           noOfMatchedRecs += (m == month);
         }
         rewind(fptr);
+#ifdef DEBUG
+        cout << "noOfFileRecs: " << noOfFileRecs << endl;
+#endif // DEBUG
 
-        employees = new Employee[noOfFileRecs];
+        employees = new Employee[noOfMatchedRecs];
 
         // match input month
         int i = 0;
         bool ok = false;
-        char name[128]{};
-        int d = 0, m = 0, y = 0;
+ 
         while (fscanf(fptr, "%[^,],%d/%d/%d\n", name, &m, &d, &y) == 4)
         {
             if (m == month)
             {
-                i++;
                 ok = true;
-                noOfMatchedRecs++;
-
-                employees[i].name = new char[strlen(name) + 1];
-                strcpy(employees[i].name, name);
+                employees[i].name = new char[U.strlen(name) + 1];
+                U.strcpy(employees[i].name, name);
                 employees[i].month = m;
                 employees[i].day = d;
                 employees[i].year = y;
+                i++;
             }
         }
         rewind(fptr);
@@ -82,31 +81,6 @@ namespace sdds
                     temp = employees[j];
                     employees[j] = employees[j + 1];
                     employees[j + 1] = temp;
-                }
-                else if (employees[j].year == employees[j + 1].year)
-                {
-
-                    if (employees[j].month > employees[j + 1].month)
-                    {
-                        temp = employees[j];
-                        employees[j] = employees[j + 1];
-                        employees[j + 1] = temp;
-                    }
-                    else if (employees[j].month == employees[j + 1].month)
-                    {
-                        if (employees[j].day > employees[j + 1].day)
-                        {
-                            temp = employees[j];
-                            employees[j] = employees[j + 1];
-                            employees[j + 1] = temp;
-                        }
-                        else if (employees[j].day == employees[j + 1].day)
-                        {
-                            temp = employees[j];
-                            employees[j] = employees[j + 1];
-                            employees[j + 1] = temp;
-                        }
-                    }
                 }
             }
         }
