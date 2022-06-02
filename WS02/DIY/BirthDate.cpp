@@ -17,7 +17,7 @@ using namespace sdds;
 namespace sdds
 {
     FILE *fptr = nullptr;
-    Employee *employees{nullptr}; 
+    Employee *employees{nullptr};
     int noOfMatchedRecs = 0;
 
     bool beginSearch(const char *filename)
@@ -59,6 +59,7 @@ namespace sdds
             if (m == month)
             {
                 ok = true;
+                // dynamically allocate an char
                 employees[i].name = new char[U.strlen(name) + 1];
                 U.strcpy(employees[i].name, name);
                 employees[i].month = m;
