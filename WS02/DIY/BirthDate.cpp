@@ -51,7 +51,7 @@ namespace sdds
         }
         rewind(fptr);
 
-        // dynamically allocate an structure
+        // dynamically allocate a struct
         employees = new Employee[noOfMatchedRecs];
 
         while (fscanf(fptr, "%[^,],%d/%d/%d\n", name, &m, &d, &y) == 4)
@@ -59,7 +59,7 @@ namespace sdds
             if (m == month)
             {
                 ok = true;
-                // dynamically allocate an char
+                // dynamically allocate a char
                 employees[i].name = new char[U.strlen(name) + 1];
                 U.strcpy(employees[i].name, name);
                 employees[i].month = m;

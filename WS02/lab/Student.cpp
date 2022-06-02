@@ -45,7 +45,7 @@ namespace sdds
       bool ok = false;
       if (openFile(filename))
       {
-         // dynamically allocate an structure
+         // dynamically allocate a struct
          noOfStudents = noOfRecords();
          students = new Student[noOfStudents];
 
@@ -76,7 +76,7 @@ namespace sdds
       if (read(name))
       {
          ok = true;
-         // dynamically allocate an char
+         // dynamically allocate a char
          Sd.m_name = new char[strlen(name) + 1];
          strcpy(Sd.m_name, name);
          read(Sd.m_studentNumber);
