@@ -1,22 +1,21 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include "BirthDate.h"
 #include "Utils.h"
+#include "BirthDate.h"
 #include <iostream>
 using namespace std;
 using namespace sdds;
 
 namespace sdds
 {
-    // FILE *fptr = nullptr;
+    FILE *fptr = nullptr;
     Employee *employees{nullptr};
-    int noOfEmployees = 0;
-    int noOfRecs = 0;
+    int noOfMatchedRecs = 0;
 
     bool beginSearch(const char *filename)
     {
         bool ok = false;
 
-        if (openFile(filename))
+        if (fopen(filename, "r"))
         {
             cout << "BirthDate Search Program\n";
             ok = true;
@@ -26,48 +25,55 @@ namespace sdds
             cout << "Data file \"" << filename << "\" not found!";
             ok = false;
         }
-        closeFile();
+        // close file
+        if (fptr)
+            fclose(fptr);
         return ok;
     }
 
     bool readBirthDate(int month)
     {
+        /// calculate total records
+        char ch;
+        int noOfFileRecs = 0;
+        while (fscanf(fptr, "%c", &ch) == 1)
+        {
+            noOfFileRecs += (ch == '\n');
+        }
+        rewind(fptr);
+
+        employees = new Employee[noOfFileRecs];
+
+        // match input month
         int i = 0;
         bool ok = false;
-        Employee temp{};
-
-        noOfEmployees = noOfRecords();
-        employees = new Employee[noOfEmployees];
-
-        if (noOfEmployees > 0)
+        char name[128]{};
+        int d = 0, m = 0, y = 0;
+        while (fscanf(fptr, "%[^,],%d/%d/%d\n", name, &m, &d, &y) == 4)
         {
-            while (i < noOfEmployees && fscanf(fptr, "%[^,],%d/%d/%d\n",
-                                               temp.name, &temp.month, &temp.day, &temp.year) == 4)
+            if (m == month)
             {
                 i++;
                 ok = true;
+                noOfMatchedRecs++;
 
-                if (temp.month == month)
-                {
-                    noOfRecs++;
-
-                    employees[i].name = new char[strlen(temp.name) + 1];
-                    strcpy(employees[i].name, temp.name);
-                    employees[i].month = temp.month;
-                    employees[i].day = temp.day;
-                    employees[i].year = temp.year;
-                }
+                employees[i].name = new char[strlen(name) + 1];
+                strcpy(employees[i].name, name);
+                employees[i].month = m;
+                employees[i].day = d;
+                employees[i].year = y;
             }
-            rewind(fptr);
         }
+        rewind(fptr);
         return ok;
     }
+    
 
     void sort()
     {
         int i, j;
         Employee temp;
-        for (i = noOfEmployees - 1; i > 0; i--)
+        for (i = noOfMatchedRecs - 1; i > 0; i--)
         {
             for (j = 0; j < i; j++)
             {
@@ -108,9 +114,9 @@ namespace sdds
 
     void displayBirthdays()
     {
-        cout << noOfRecs << " birthdates found: \n";
+        cout << noOfMatchedRecs << " birthdates found: \n";
 
-        for (int i = 0; i < noOfRecs; i++)
+        for (int i = 0; i < noOfMatchedRecs; i++)
         {
             cout << i + 1 << ") " << employees[i].name << ":\n"
                  << employees[i].day << "-"
@@ -122,18 +128,18 @@ namespace sdds
 
     void deallocate()
     {
-        for (int i = 0; i < noOfEmployees; i++)
+        for (int i = 0; i < noOfMatchedRecs; i++)
         {
             delete[] employees[i].name;
         }
         delete[] employees;
         employees = nullptr;
-        noOfEmployees = 0;
     }
 
     void endSearch()
     {
-        closeFile();
+        if (fptr)
+            fclose(fptr);
         cout << "Birthdate Search Program Closed.\n";
     }
 }

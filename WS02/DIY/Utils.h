@@ -3,10 +3,6 @@
 
 namespace sdds
 {
-    bool openFile(const char filename[]);
-    void closeFile();
-    int noOfRecords();
-
     int strlen(const char *str);
     void strcpy(char *des, const char *src);
 }

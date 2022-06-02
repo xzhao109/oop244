@@ -19,7 +19,7 @@ namespace sdds
     void endSearch();
 
     extern Employee *employees;
-    extern int noOfEmployees;
+    extern int noOfMatchedRecs;
 }
 
 #endif // !SDDS_BIRTHDATE_H
