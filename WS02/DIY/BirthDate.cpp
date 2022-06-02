@@ -1,7 +1,16 @@
+/////////////////////////////////////////////////////////
+// WorkSho#2  :  Part 2
+// Full Name  :  Xiaoyue Zhao
+// Student ID :  124899212
+// Email      :  xzhao109@myseneca.ca
+// Section    :  ZAA
+// Date       :  Jun 2
+/////////////////////////////////////////////////////////
+
 #define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
 #include "Utils.h"
 #include "BirthDate.h"
-#include <iostream>
 using namespace std;
 using namespace sdds;
 
@@ -14,8 +23,9 @@ namespace sdds
     bool beginSearch(const char *filename)
     {
         bool ok = false;
+        fptr = fopen(filename, "r");
 
-        if (fopen(filename, "r"))
+        if (fptr)
         {
             cout << "BirthDate Search Program\n";
             ok = true;
@@ -25,49 +35,42 @@ namespace sdds
             cout << "Data file \"" << filename << "\" not found!";
             ok = false;
         }
-        // close file
-        if (fptr)
-            fclose(fptr);
         return ok;
     }
 
     bool readBirthDate(int month)
     {
-        /// calculate total records
-        char ch;
-        int noOfFileRecs = 0;
-        while (fscanf(fptr, "%c", &ch) == 1)
-        {
-            noOfFileRecs += (ch == '\n');
-        }
-        rewind(fptr);
-
-        employees = new Employee[noOfFileRecs];
-
-        // match input month
         int i = 0;
         bool ok = false;
         char name[128]{};
         int d = 0, m = 0, y = 0;
+
+        // calculate matched records
+        while (fscanf(fptr, "%[^,],%d/%d/%d\n", name, &m, &d, &y) == 4)
+        {
+            noOfMatchedRecs += (m == month);
+        }
+        rewind(fptr);
+
+        // dynamically allocate an structure
+        employees = new Employee[noOfMatchedRecs];
+
         while (fscanf(fptr, "%[^,],%d/%d/%d\n", name, &m, &d, &y) == 4)
         {
             if (m == month)
             {
-                i++;
                 ok = true;
-                noOfMatchedRecs++;
-
-                employees[i].name = new char[strlen(name) + 1];
-                strcpy(employees[i].name, name);
+                employees[i].name = new char[U.strlen(name) + 1];
+                U.strcpy(employees[i].name, name);
                 employees[i].month = m;
                 employees[i].day = d;
                 employees[i].year = y;
+                i++;
             }
         }
         rewind(fptr);
         return ok;
     }
-    
 
     void sort()
     {
@@ -83,31 +86,6 @@ namespace sdds
                     employees[j] = employees[j + 1];
                     employees[j + 1] = temp;
                 }
-                else if (employees[j].year == employees[j + 1].year)
-                {
-
-                    if (employees[j].month > employees[j + 1].month)
-                    {
-                        temp = employees[j];
-                        employees[j] = employees[j + 1];
-                        employees[j + 1] = temp;
-                    }
-                    else if (employees[j].month == employees[j + 1].month)
-                    {
-                        if (employees[j].day > employees[j + 1].day)
-                        {
-                            temp = employees[j];
-                            employees[j] = employees[j + 1];
-                            employees[j + 1] = temp;
-                        }
-                        else if (employees[j].day == employees[j + 1].day)
-                        {
-                            temp = employees[j];
-                            employees[j] = employees[j + 1];
-                            employees[j + 1] = temp;
-                        }
-                    }
-                }
             }
         }
     }
@@ -119,9 +97,9 @@ namespace sdds
         for (int i = 0; i < noOfMatchedRecs; i++)
         {
             cout << i + 1 << ") " << employees[i].name << ":\n"
-                 << employees[i].day << "-"
+                 << employees[i].year << "-"
                  << employees[i].month << "-"
-                 << employees[i].year << endl;
+                 << employees[i].day << endl;
             cout << "===========================================\n";
         }
     }
@@ -138,6 +116,7 @@ namespace sdds
 
     void endSearch()
     {
+        // close file
         if (fptr)
             fclose(fptr);
         cout << "Birthdate Search Program Closed.\n";

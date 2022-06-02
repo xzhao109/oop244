@@ -1,15 +1,25 @@
+/////////////////////////////////////////////////////////
+// WorkSho#2  :  Part 1
+// Full Name  :  Xiaoyue Zhao
+// Student ID :  124899212
+// Email      :  xzhao109@myseneca.ca
+// Section    :  ZAA
+// Date       :  Jun 2
+/////////////////////////////////////////////////////////
+
 #define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
 #include "Student.h"
 #include "File.h"
 #include "Utils.h"
-#include <iostream>
 
 using namespace std;
 using namespace sdds;
 
 namespace sdds
 {
-   Student *students{nullptr}; // initialize a pointer to be a null pointer
+   // initialize a pointer to be a null pointer
+   Student *students{nullptr};
    int noOfStudents = 0;
 
    void sort()
@@ -36,8 +46,9 @@ namespace sdds
       bool ok = false;
       if (openFile(filename))
       {
+         // dynamically allocate an structure
          noOfStudents = noOfRecords();
-         students = new Student[noOfStudents]; // dynamically allocate an structure
+         students = new Student[noOfStudents];
 
          while (rec < noOfStudents && load(students[rec]))
          {
@@ -60,13 +71,15 @@ namespace sdds
 
    bool load(Student &Sd)
    {
-      char name[128]{}; // initialize all elements to zero
+      // initialize all elements to zero
+      char name[128]{};
       bool ok = false;
 
       if (read(name))
       {
          ok = true;
-         Sd.m_name = new char[strlen(name) + 1]; // dynamically allocate an char
+         // dynamically allocate an char
+         Sd.m_name = new char[strlen(name) + 1];
          strcpy(Sd.m_name, name);
          read(Sd.m_studentNumber);
          read(Sd.m_grade);
@@ -80,7 +93,9 @@ namespace sdds
 
    void display(const Student &Sd)
    {
-      cout << Sd.m_name << ", " << Sd.m_studentNumber << ": " << Sd.m_grade << endl;
+      cout << Sd.m_name << ", "
+           << Sd.m_studentNumber << ": "
+           << Sd.m_grade << endl;
    }
 
    void display()
