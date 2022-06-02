@@ -27,6 +27,7 @@ namespace sdds
     void deallocate();
     void endSearch();
 
+    // declare global variables
     extern Employee *employees;
     extern int noOfMatchedRecs;
 }

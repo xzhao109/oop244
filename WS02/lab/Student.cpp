@@ -18,7 +18,6 @@ using namespace sdds;
 
 namespace sdds
 {
-   // initialize a pointer to be a null pointer
    Student *students{nullptr};
    int noOfStudents = 0;
 
@@ -71,7 +70,6 @@ namespace sdds
 
    bool load(Student &Sd)
    {
-      // initialize all elements to zero
       char name[128]{};
       bool ok = false;
 

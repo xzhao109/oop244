@@ -17,20 +17,16 @@ using namespace sdds;
 namespace sdds
 {
     FILE *fptr = nullptr;
-    Employee *employees{nullptr};
+    Employee *employees{nullptr}; 
     int noOfMatchedRecs = 0;
 
     bool beginSearch(const char *filename)
     {
         bool ok = false;
         fptr = fopen(filename, "r");
-<<<<<<< HEAD
-
-=======
->>>>>>> d1765f5a53f7f75439193e9aa74d52a345a6af8c
         if (fptr)
         {
-            cout << "BirthDate Search Program\n";
+            cout << "Birthdate search program\n";
             ok = true;
         }
         else
@@ -43,7 +39,6 @@ namespace sdds
 
     bool readBirthDate(int month)
     {
-<<<<<<< HEAD
         int i = 0;
         bool ok = false;
         char name[128]{};
@@ -59,28 +54,6 @@ namespace sdds
         // dynamically allocate an structure
         employees = new Employee[noOfMatchedRecs];
 
-=======
-       char name[128]{};
-       int d = 0, m = 0, y = 0;
-        /// calculate total records
-        char ch;
-        noOfMatchedRecs = 0;
-        while (fscanf(fptr, "%[^,],%d/%d/%d\n", name, &m, &d, &y) == 4)
-        {
-           noOfMatchedRecs += (m == month);
-        }
-        rewind(fptr);
-#ifdef DEBUG
-        cout << "noOfFileRecs: " << noOfFileRecs << endl;
-#endif // DEBUG
-
-        employees = new Employee[noOfMatchedRecs];
-
-        // match input month
-        int i = 0;
-        bool ok = false;
- 
->>>>>>> d1765f5a53f7f75439193e9aa74d52a345a6af8c
         while (fscanf(fptr, "%[^,],%d/%d/%d\n", name, &m, &d, &y) == 4)
         {
             if (m == month)
@@ -118,7 +91,7 @@ namespace sdds
 
     void displayBirthdays()
     {
-        cout << noOfMatchedRecs << " birthdates found: \n";
+        cout << noOfMatchedRecs << " birthdates found:\n";
 
         for (int i = 0; i < noOfMatchedRecs; i++)
         {
@@ -126,7 +99,7 @@ namespace sdds
                  << employees[i].year << "-"
                  << employees[i].month << "-"
                  << employees[i].day << endl;
-            cout << "===========================================\n";
+            cout << "===================================\n";
         }
     }
 
