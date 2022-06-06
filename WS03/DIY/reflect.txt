@@ -1,0 +1,57 @@
+/////////////////////////////////////////////////////////
+// WorkSho#3  :  Part 2
+// Full Name  :  Xiaoyue Zhao
+// Student ID :  124899212
+// Email      :  xzhao109@myseneca.ca
+// Section    :  ZAA
+// Date       :  Jun 4
+/////////////////////////////////////////////////////////
+
+
+< /1 >
+Citation:
+By Maria Patricia Espinoza Bueno.
+
+Part1 - Army module 
+in updateUnits():
+She helped me to figure out the formula for calculating units and power.
+I appreciate her help.
+
+
+< /2 >
+For this workshop, the biggest feeling is that I must read the guide carefully 
+to figure out what the project is going to do, what functions each module is going to accomplish, 
+and how to cooperate with each other. 
+
+I wrote the requirements for each variable and function in the comments, 
+and reading the comments repeatedly helped me a lot to finish the workshop.
+
+I think it is very important to fully understand the concept of C++, 
+followed by understanding the modules, the role of each function, and how they work with each other.
+
+
+< /3 >
+There are some difficult points about this workshop, as follows:
+
+Part1 - Army module 
+in updateUnits():
+Maria helped me to figure it out.
+
+Part2 - BarChart module 
+I spent a lot of time thinking about how the two modules would work. 
+
+in allValid():
+
+didn't work：
+    if (counter == sizeOfBars)
+    {
+        bool ok = true;
+    }
+worked:
+    if (counter == sizeOfBars)
+    {
+        ok = true;
+    }
+
+I duplicated the declaration of two bool variables, so it never succeeded in returning a value,
+resulting in an error in draw(), and it took me a long time to find the issue.
