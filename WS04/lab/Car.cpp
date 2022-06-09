@@ -18,23 +18,7 @@ namespace sdds
              int code,
              double price)
     {
-        // if (isValid())
-        // {
-        m_type = new char[strlen(type) + 1];
-        strcpy(m_type, type);
-        m_brand = new char[strlen(brand) + 1];
-        strcpy(m_brand, brand);
-        m_model = new char[strlen(model) + 1];
-        strcpy(m_model, model);
-        m_year = year;
-        m_code = code;
-        m_price = price;
-        // setInfo(m_type, m_brand, m_model, year, code, price);
-        // }
-        // else
-        // {
-        //     resetInfo();
-        // }
+       setInfo(type, brand, model, year, code, price);
     }
 
     Car::~Car()
@@ -128,62 +112,44 @@ namespace sdds
 
     bool Car::isValid() const
     {
-        bool ok = false;
-        if (m_type && m_type[0] && m_brand && m_brand[0] && m_model && m_model[0] &&
-            m_year >= 1900 && (m_code > 99 && m_code < 1000) && m_price > 0)
-        {
-
-            ok = true;
-        }
-        return ok;
+       return (m_type && m_type[0] && m_brand && m_brand[0] && m_model && m_model[0] &&
+          m_year >= 1900 && (m_code >= 100 && m_code <= 999) && m_price > 0);
     }
 
     bool Car::isSimilarTo(const Car& car) const
     {
-        bool ok = false;
-        if (car.m_type == this->m_type && car.m_brand == this->m_brand &&
-            car.m_model == this->m_model && car.m_year == this->m_year)
-        {
-            ok = true;
-        }
-        return ok;
+       return (strcmp(car.m_type, this->m_type) == 0 && car.m_brand == this->m_brand &&
+          car.m_model == this->m_model && car.m_year == this->m_year);
     }
 
     // Global helper functions
     bool has_similar(const Car car[], const int num_cars)
     {
-        bool ok = false;
-        for (int i = 0; i < num_cars; i++)
+        bool match = false;
+        for (int i = 0; !match && i < num_cars; i++)
         {
-            for (int j = i + 1; j < num_cars; j++)
+            for (int j = i + 1; !match && j < num_cars; j++)
             {
-                if (car[i].isSimilarTo(car[j]))
+                if (car[i].isSimilarTo(car[j]))   
                 {
-                    ok = true;
+                    match = true;
                 }
             }
         }
-        return ok;
+        return match;
     }
 
     bool has_invalid(const Car car[], const int num_cars)
     {
-        int counter = 0;
-        bool ok = false;
-
-        for (int i = 0; i < num_cars; i++)
+        bool found = false;
+        for (int i = 0; !found && i < num_cars; i++)
         {
             if (!car[i].isValid())
             {
-                counter++;
+                found = true;
             }
         }
-
-        if (counter > 0)
-        {
-            ok = true;
-        }
-        return ok;
+        return found;
     }
 
     void print(const Car car[], const int num_cars)
