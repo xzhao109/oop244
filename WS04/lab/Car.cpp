@@ -18,7 +18,11 @@ namespace sdds
              int code,
              double price)
     {
+<<<<<<< HEAD
         setInfo(type, brand, model, year, code, price);
+=======
+       setInfo(type, brand, model, year, code, price);
+>>>>>>> 03f994337c325fb4292982e050467e27a6911e44
     }
 
     Car::~Car()
@@ -114,14 +118,24 @@ namespace sdds
 
     bool Car::isValid() const
     {
+<<<<<<< HEAD
         return (m_type && m_type[0] && m_brand && m_brand[0] && m_model && m_model[0] &&
                 m_year >= 1900 && (m_code >= 100 && m_code <= 999) && m_price > 0);
+=======
+       return (m_type && m_type[0] && m_brand && m_brand[0] && m_model && m_model[0] &&
+          m_year >= 1900 && (m_code >= 100 && m_code <= 999) && m_price > 0);
+>>>>>>> 03f994337c325fb4292982e050467e27a6911e44
     }
 
     bool Car::isSimilarTo(const Car& car) const
     {
+<<<<<<< HEAD
         return (strcmp(car.m_type, this->m_type) == 0 && strcmp(car.m_brand, this->m_brand) == 0 &&
                 strcmp(car.m_model, this->m_model) == 0 && car.m_year == this->m_year);
+=======
+       return (strcmp(car.m_type, this->m_type) == 0 && car.m_brand == this->m_brand &&
+          car.m_model == this->m_model && car.m_year == this->m_year);
+>>>>>>> 03f994337c325fb4292982e050467e27a6911e44
     }
 
     // Global helper functions
@@ -132,7 +146,7 @@ namespace sdds
         {
             for (int j = i + 1; !match && j < num_cars; j++)
             {
-                if (car[i].isSimilarTo(car[j]))
+                if (car[i].isSimilarTo(car[j]))   
                 {
                     match = true;
                 }

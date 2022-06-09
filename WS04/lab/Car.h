@@ -8,7 +8,7 @@ namespace sdds
     {
     private:
         char* m_type{};
-        char* m_brand{};
+        char* m_brand{}; // << what is Cstring        
         char* m_model{};
         int m_year{};
         int m_code{};
