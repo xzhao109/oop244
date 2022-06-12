@@ -1,0 +1,3 @@
+/Users/zhaoxiaoyue/VSCode109/oop244/WS04/DIY/cmake-build-debug/CMakeFiles/DIY.dir
+/Users/zhaoxiaoyue/VSCode109/oop244/WS04/DIY/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/zhaoxiaoyue/VSCode109/oop244/WS04/DIY/cmake-build-debug/CMakeFiles/rebuild_cache.dir

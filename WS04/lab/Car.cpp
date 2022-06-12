@@ -1,3 +1,12 @@
+/////////////////////////////////////////////////////////
+// WorkSho#4  :  Part 1
+// Full Name  :  Xiaoyue Zhao
+// Student ID :  124899212
+// Email      :  xzhao109@myseneca.ca
+// Section    :  ZAA
+// Date       :  Jun 9
+/////////////////////////////////////////////////////////
+
 #define _CRT_SECURE_NO_WARNINGS
 #include "Car.h"
 #include <cstring>
@@ -33,7 +42,7 @@ namespace sdds
         m_model = nullptr;
         m_year = 0;
         m_code = 0;
-        m_price = 0.0;
+        m_price = 0;
     }
 
     void Car::deallocate()
@@ -55,7 +64,8 @@ namespace sdds
     {
         deallocate();
 
-        if (isValid())
+        if (type && type[0] && brand && brand[0] && model && model[0] &&
+            year >= 1990 && (code >= 100 && code <= 999) && price > 0)
         {
             m_type = new char[strlen(type) + 1];
             strcpy(m_type, type);
@@ -78,50 +88,54 @@ namespace sdds
     {
         if (isValid())
         {
-            cout << "|";
-            // cout.setf(ios::left);
-            cout.width(12);
+            cout << "| ";
+            cout.setf(ios::left);
+            cout.width(11);
+            cout.fill(' ');
             cout << m_type;
 
-            cout << "|";
-            // cout.setf(ios::left);
-            cout.width(18);
+            cout << "| ";
+            cout.setf(ios::left);
+            cout.width(17);
+            cout.fill(' ');
             cout << m_brand;
 
-            cout << "|";
-            // cout.setf(ios::left);
-            cout.width(18);
+            cout << "| ";
+            cout.setf(ios::left);
+            cout.width(16);
+            cout.fill(' ');
             cout << m_model;
 
-            cout << "|";
-            // cout.setf(ios::right);
-            cout.width(3);
+            cout.unsetf(ios::left);
+
+            cout << " |";
+            cout.width(5);
+            cout.fill(' ');
             cout << m_year;
 
-            cout << "|";
-            // cout.setf(ios::right);
-            cout.width(4);
+            cout << " |";
+            cout.width(5);
+            cout.fill(' ');
             cout << m_code;
 
-            cout << "|";
-            // cout.setf(ios::right);
-            cout.width(11);
+            cout << " |";
+            cout.width(10);
             cout.setf(ios::fixed);
             cout.precision(2);
-            cout << m_price << "|" << endl;
+            cout << m_price << " |" << endl;
         }
     }
 
     bool Car::isValid() const
     {
         return (m_type && m_type[0] && m_brand && m_brand[0] && m_model && m_model[0] &&
-                m_year >= 1900 && (m_code >= 100 && m_code <= 999) && m_price > 0);
+                m_year >= 1990 && (m_code >= 100 && m_code <= 999) && m_price > 0);
     }
 
     bool Car::isSimilarTo(const Car& car) const
     {
-        return (strcmp(car.m_type, this->m_type) == 0 && strcmp(car.m_brand, this->m_brand) == 0 &&
-                strcmp(car.m_model, this->m_model) == 0 && car.m_year == this->m_year);
+        return (car.m_type == this->m_type && car.m_brand == this->m_brand &&
+                car.m_model == this->m_model && car.m_year == this->m_year);
     }
 
     // Global helper functions
@@ -143,15 +157,15 @@ namespace sdds
 
     bool has_invalid(const Car car[], const int num_cars)
     {
-        bool found = false;
-        for (int i = 0; !found && i < num_cars; i++)
+        bool match = false;
+        for (int i = 0; !match && i < num_cars; i++)
         {
             if (!car[i].isValid())
             {
-                found = true;
+                match = true;
             }
         }
-        return found;
+        return match;
     }
 
     void print(const Car car[], const int num_cars)
