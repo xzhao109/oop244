@@ -1,3 +1,12 @@
+/////////////////////////////////////////////////////////
+// WorkSho#4  :  Part 2
+// Full Name  :  Xiaoyue Zhao
+// Student ID :  124899212
+// Email      :  xzhao109@myseneca.ca
+// Section    :  ZAA
+// Date       :  Jun 12
+/////////////////////////////////////////////////////////
+
 #define _CRT_SECURE_NO_WARNINGS
 #include "CleanerBot.h"
 #include <cstring>
@@ -13,9 +22,9 @@ namespace sdds
     }
 
     CleanerBot::CleanerBot(const char* m_location,
-                           double m_battery,
-                           int m_brush,
-                           bool m_active)
+                           const double m_battery,
+                           const int m_brush,
+                           const bool m_active)
     {
         set(m_location, m_battery, m_brush, m_active);
     }
@@ -47,26 +56,18 @@ namespace sdds
     {
         deallocate();
 
-        if (location && location[0])
+        if (location && location[0] && battery > 0 && brush > 0 &&
+            (active == 0 || active == 1))
         {
             setLocation(location);
-        }
-
-        if (battery >= 0.0)
-        {
             m_battery = battery;
-        }
-
-        if (brush >= 0)
-        {
             m_brush = brush;
-        }
-
-        if (active == 0 || active == 1)
-        {
             setActive(active);
         }
-
+        else
+        {
+            setEmpty();
+        }
         return *this;
     }
 
@@ -78,7 +79,7 @@ namespace sdds
         return *this;
     }
 
-    CleanerBot& CleanerBot::setActive(bool active)
+    CleanerBot& CleanerBot::setActive(const bool active)
     {
         m_active = active;
         return *this;
@@ -102,14 +103,14 @@ namespace sdds
 
     bool CleanerBot::isActive() const
     {
-        // return if a robot is active
         return m_active;
     }
 
+    // helper functions
     bool CleanerBot::isValid() const
     {
-        return (m_location && m_location[0] && m_battery > 0 && m_brush > 0 &&
-                (m_active == 0 || m_active == 1));
+        return (m_location && m_location[0] && m_battery > 0 &&
+                m_brush > 0 && (m_active == 0 || m_active == 1));
     }
 
     void CleanerBot::display() const
@@ -154,27 +155,34 @@ namespace sdds
     }
 
     // Global (stand-alone) functions
-    int displayChart(CleanerBot* bot, short num_bots)
+    void displayInfo(const CleanerBot bot[], const short num_bots)
     {
-        int counter = 0;
         for (int i = 0; i < num_bots; i++)
         {
             if (bot[i].isValid())
             {
                 bot[i].display();
-                if (bot[i].getBattery() < 30.0)
-                {
-                    counter++;
-                }
+            }
+        }
+    }
+
+    int noOfLowBattery(const CleanerBot bot[], const short num_bots)
+    {
+        int counter = 0;
+        for (int i = 0; i < num_bots; i++)
+        {
+            if (bot[i].isValid() && bot[i].getBattery() < 30.0)
+            {
+                counter++;
             }
         }
         return counter;
     }
 
-    void sort(CleanerBot* bot, short num_bots)
+    void sort(CleanerBot* bot, const short num_bots)
     {
         int i, j;
-        CleanerBot temp;
+        CleanerBot temp{};
 
         for (i = num_bots; i > 0; i--)
         {
@@ -182,15 +190,20 @@ namespace sdds
             {
                 if (bot[j].getBattery() > bot[j - 1].getBattery())
                 {
-                    temp = bot[j];
-                    bot[j] = bot[j - 1];
-                    bot[j - 1] = temp;
+                    temp.set(bot[j - 1].getLocation(), bot[j - 1].getBattery(),
+                             bot[j - 1].getBrush(), bot[j - 1].isActive());
+
+                    bot[j - 1].set(bot[j].getLocation(), bot[j].getBattery(),
+                                   bot[j].getBrush(), bot[j].isActive());
+
+                    bot[j].set(temp.getLocation(), temp.getBattery(),
+                               temp.getBrush(), temp.isActive());
                 }
             }
         }
     }
 
-    int report(CleanerBot* bot, short num_bots)
+    int report(CleanerBot* bot, const short num_bots)
     {
         cout << "         ------ Cleaner Bots Report -----" << endl;
         cout << "     ---------------------------------------" << endl;
@@ -198,14 +211,14 @@ namespace sdds
         cout << "|------------+---------+--------------------+--------|" << endl;
 
         // LOW BATTERY WARNING
-        int counter = displayChart(bot, num_bots);
-        if (counter)
+        displayInfo(bot, num_bots);
+        if (noOfLowBattery(bot, num_bots))
         {
             cout << endl;
             cout << "|====================================================|" << endl;
             cout << "| LOW BATTERY WARNING:                               |" << endl;
             cout << "|====================================================|" << endl;
-            cout << "| Number of robots to be charged: " << counter
+            cout << "| Number of robots to be charged: " << noOfLowBattery(bot, num_bots)
                  << "                  |" << endl;
             cout << "| Sorting robots based on their available power:     |" << endl;
             cout << "| Location   | Battery |  Number of Brushes | Active |" << endl;
@@ -214,7 +227,7 @@ namespace sdds
 
         // Sort descending
         sort(bot, num_bots);
-        displayChart(bot, num_bots);
+        displayInfo(bot, num_bots);
         cout << "|====================================================|" << endl;
 
         return 0;

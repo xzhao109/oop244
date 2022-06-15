@@ -1,0 +1,56 @@
+/////////////////////////////////////////////////////////
+// WorkSho#4  :  Part 2
+// Full Name  :  Xiaoyue Zhao
+// Student ID :  124899212
+// Email      :  xzhao109@myseneca.ca
+// Section    :  ZAA
+// Date       :  Jun 12
+/////////////////////////////////////////////////////////
+
+< /Part1 - Lab>
+Citation:
+By Prof.Fardad
+
+Car (6 arguments);
+
+    To initialize a value through constructor, setInfo() should be called. 
+    At first, I didn't understand why the constructor was needed.
+
+    For member variables private, we’re not able to initialize classes. 
+    Through constructors, we initialize a class with private member variables.
+
+setInfo();
+    Help me remove the code that is duplicated (and is not needed) with the constructor.
+
+    What cost me a lot of time was the if statement. 
+    I started with calling isValid(), and I defaulted to it being work, 
+    so I spent a lot of time debugging the rest. 
+    I need to spend a lot more time learning CPP.
+
+isValid();
+isSimilarTo();
+    Help me optimise code to return bool values directly without the need for an if statement.
+    >>    return (car.m_type == this->m_type && car.m_brand == this->m_brand &&
+    >>            car.m_model == this->m_model && car.m_year == this->m_year);
+
+has_similar();
+has_invalid();
+    Helped me add (!match) to the for loop condition.
+    >>    for (int i = 0; !match && i < num_cars; i++)
+    It made it make more sense.
+
+
+
+
+< /Part2 - DIY>
+Dynamic memory issues.
+
+I spent a lot of time trying free my memory and tried many ways, 
+but all of them eventually failed! Always stuck in sort function。
+Finally, I backed up to setter functions to fix it.
+
+
+As a result of the local full match sample output, there are more issues with Matix. 
+There are two issues：
+1. total heap usage: 31 allocs, 30 frees
+2. Conditional jump or move depends on uninitialised value(s)

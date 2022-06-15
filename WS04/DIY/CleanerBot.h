@@ -1,6 +1,14 @@
+/////////////////////////////////////////////////////////
+// WorkSho#4  :  Part 2
+// Full Name  :  Xiaoyue Zhao
+// Student ID :  124899212
+// Email      :  xzhao109@myseneca.ca
+// Section    :  ZAA
+// Date       :  Jun 12
+/////////////////////////////////////////////////////////
+
 #ifndef SDDS_CLEANERBOT_H
 #define SDDS_CLEANERBOT_H
-#define DEBUG
 
 namespace sdds
 {
@@ -15,14 +23,14 @@ namespace sdds
     public:
         CleanerBot();
         CleanerBot(const char* location,
-                   double battery,
-                   int brush,
-                   bool active);
+                   const double battery = 0,
+                   const int brush = 0,
+                   const bool active = false);
         ~CleanerBot();
 
         // helper functions
-        void setEmpty();   // diy
-        void deallocate(); // diy
+        void setEmpty();
+        void deallocate();
 
         // setterfunctions
         CleanerBot& set(const char* location,
@@ -30,7 +38,7 @@ namespace sdds
                         int brush,
                         bool active);
         CleanerBot& setLocation(const char* location);
-        CleanerBot& setActive(bool active);
+        CleanerBot& setActive(const bool active);
 
         // getter functions
         const char* getLocation() const;
@@ -38,15 +46,16 @@ namespace sdds
         int getBrush() const;
         bool isActive() const;
 
-        // helpe rfunctions
+        // helper functions
         bool isValid() const;
         void display() const;
     };
 
     // Global (stand-alone) functions
-    int displayChart(CleanerBot* bot, short num_bots); // diy
-    void sort(CleanerBot* bot, short num_bots);        // diy
-    int report(CleanerBot* bot, short num_bots);
+    void displayInfo(const CleanerBot bot[], const short num_bots);
+    int noOfLowBattery(const CleanerBot bot[], const short num_bots);
+    void sort(CleanerBot* bot, const short num_bots);
+    int report(CleanerBot* bot, const short num_bots);
 }
 
 #endif
