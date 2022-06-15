@@ -14,14 +14,13 @@ Filename: main.cpp
 Version 1.0
 Author: Asad Norouzi
 -----------------------------------------------------------*/
-#include "CleanerBot.h"
 #include <iostream>
 
+#include "CleanerBot.h"
 using namespace std;
 using namespace sdds;
 
-int main()
-{
+int main() {
     const int num_bots = 8;
     CleanerBot bot[num_bots] = {
         {},
