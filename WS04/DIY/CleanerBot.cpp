@@ -155,14 +155,31 @@ void sort(CleanerBot* bot, const short num_bots) {
     int i, j;
     CleanerBot temp{};
 
-    for (i = num_bots; i > 0; i--) {
-        for (j = num_bots - 1; j > num_bots - i; j--) {
-            if (bot[j].getBattery() > bot[j - 1].getBattery()) {
-                temp.set(bot[j - 1].getLocation(), bot[j - 1].getBattery(),
-                         bot[j - 1].getBrush(), bot[j - 1].isActive());
+    // DESC method #1
+    // for (i = num_bots; i > 0; i--) {
+    //     for (j = num_bots - 1; j > num_bots - i; j--) {
+    //         if (bot[j].getBattery() > bot[j - 1].getBattery()) {
+    //             temp.set(bot[j - 1].getLocation(), bot[j - 1].getBattery(),
+    //                      bot[j - 1].getBrush(), bot[j - 1].isActive());
 
-                bot[j - 1].set(bot[j].getLocation(), bot[j].getBattery(),
-                               bot[j].getBrush(), bot[j].isActive());
+    //             bot[j - 1].set(bot[j].getLocation(), bot[j].getBattery(),
+    //                            bot[j].getBrush(), bot[j].isActive());
+
+    //             bot[j].set(temp.getLocation(), temp.getBattery(),
+    //                        temp.getBrush(), temp.isActive());
+    //         }
+    //     }
+    // }
+
+    // DESC method #2
+    for (i = 0; i < num_bots; ++i) {
+        for (j = i + 1; j < num_bots; ++j) {
+            if (bot[i].getBattery() < bot[j].getBattery()) {
+                temp.set(bot[i].getLocation(), bot[i].getBattery(),
+                         bot[i].getBrush(), bot[i].isActive());
+
+                bot[i].set(bot[j].getLocation(), bot[j].getBattery(),
+                           bot[j].getBrush(), bot[j].isActive());
 
                 bot[j].set(temp.getLocation(), temp.getBattery(),
                            temp.getBrush(), temp.isActive());
