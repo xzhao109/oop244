@@ -21,9 +21,9 @@ class CleanerBot {
    public:
     CleanerBot();
     CleanerBot(const char* location,
-               const double battery = 0,
-               const int brush = 0,
-               const bool active = false);
+               const double battery,
+               const int brush,
+               const bool active);
     ~CleanerBot();
 
     // helper functions

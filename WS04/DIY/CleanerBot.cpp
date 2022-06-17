@@ -98,36 +98,36 @@ bool CleanerBot::isValid() const {
 
 void CleanerBot::display() const {
     if (isValid()) {
-        cout << "| ";
-        cout.setf(ios::left);
-        cout.width(11);
-        cout.fill(' ');
-        cout << this->getLocation();
+        std::cout << "| ";
+        std::cout.setf(ios::left);
+        std::cout.width(11);
+        std::cout.fill(' ');
+        std::cout << this->getLocation();
 
-        cout.unsetf(ios::left);
+        std::cout.unsetf(ios::left);
 
-        cout << "|";
-        cout.width(8);
-        cout.fill(' ');
-        cout.setf(ios::fixed);
-        cout.precision(1);
-        cout << this->getBattery();
+        std::cout << "|";
+        std::cout.width(8);
+        std::cout.fill(' ');
+        std::cout.setf(ios::fixed);
+        std::cout.precision(1);
+        std::cout << this->getBattery();
 
-        cout << " | ";
-        cout.width(18);
-        cout.fill(' ');
-        cout << this->getBrush();
+        std::cout << " | ";
+        std::cout.width(18);
+        std::cout.fill(' ');
+        std::cout << this->getBrush();
 
-        cout << " | ";
-        cout.setf(ios::left);
-        cout.width(7);
+        std::cout << " | ";
+        std::cout.setf(ios::left);
+        std::cout.width(7);
 
         if (this->m_active) {
-            cout << "YES"
-                 << "|" << endl;
+            std::cout << "YES"
+                      << "|" << std::endl;
         } else {
-            cout << "NO"
-                 << "|" << endl;
+            std::cout << "NO"
+                      << "|" << std::endl;
         }
     }
 }
@@ -189,29 +189,29 @@ void sort(CleanerBot* bot, const short num_bots) {
 }
 
 int report(CleanerBot* bot, const short num_bots) {
-    cout << "         ------ Cleaner Bots Report -----" << endl;
-    cout << "     ---------------------------------------" << endl;
-    cout << "| Location   | Battery |  Number of Brushes | Active |" << endl;
-    cout << "|------------+---------+--------------------+--------|" << endl;
+    std::cout << "         ------ Cleaner Bots Report -----" << std::endl;
+    std::cout << "     ---------------------------------------" << std::endl;
+    std::cout << "| Location   | Battery |  Number of Brushes | Active |" << std::endl;
+    std::cout << "|------------+---------+--------------------+--------|" << std::endl;
 
     // LOW BATTERY WARNING
     displayInfo(bot, num_bots);
     if (noOfLowBattery(bot, num_bots)) {
-        cout << endl;
-        cout << "|====================================================|" << endl;
-        cout << "| LOW BATTERY WARNING:                               |" << endl;
-        cout << "|====================================================|" << endl;
-        cout << "| Number of robots to be charged: " << noOfLowBattery(bot, num_bots)
-             << "                  |" << endl;
-        cout << "| Sorting robots based on their available power:     |" << endl;
-        cout << "| Location   | Battery |  Number of Brushes | Active |" << endl;
-        cout << "|------------+---------+--------------------+--------|" << endl;
+        std::cout << std::endl;
+        std::cout << "|====================================================|" << std::endl;
+        std::cout << "| LOW BATTERY WARNING:                               |" << std::endl;
+        std::cout << "|====================================================|" << std::endl;
+        std::cout << "| Number of robots to be charged: " << noOfLowBattery(bot, num_bots)
+                  << "                  |" << std::endl;
+        std::cout << "| Sorting robots based on their available power:     |" << std::endl;
+        std::cout << "| Location   | Battery |  Number of Brushes | Active |" << std::endl;
+        std::cout << "|------------+---------+--------------------+--------|" << std::endl;
     }
 
     // Sort descending
     sort(bot, num_bots);
     displayInfo(bot, num_bots);
-    cout << "|====================================================|" << endl;
+    std::cout << "|====================================================|" << std::endl;
 
     return 0;
 }
