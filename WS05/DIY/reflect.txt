@@ -1,0 +1,49 @@
+/////////////////////////////////////////////////////////
+// WorkSho#5  :  Part 2
+// Full Name  :  Xiaoyue Zhao
+// Student ID :  124899212
+// Email      :  xzhao109@myseneca.ca
+// Section    :  ZAA
+// Date       :  Jun 20
+/////////////////////////////////////////////////////////
+
+< /Part1 - Lab>
+Citation:
+By YU HSIN FANG.
+I was able to understand how add_chapter() with her help.
+
+add_chapter();
+    I struggled with this feature for a long time, 
+    and at first I didn't understand why I had to do it. 
+    I later realized why I had to do it.
+
+operator double()；
+    It is not possible to cast directly the result of dividing two numbers, 
+    but only to cast them individually or separately to succeed.    
+
+
+< /Part2 - DIY>
+Hero(3 args);
+    In the beginning, it was difficult for me to understand what this constructor does. 
+    It took me a long time to understand, 
+    and I always wanted to use the assignment operator to copy the power to hero. 
+    My next thought was to use the dumb method (the old workshop method), 
+    initializing all the values and assigning them before adding the new data.
+
+
+maxtrix error:
+display();
+    When I submitted the matrix, I got an error stating ‘os’ was out of scope, 
+    but adding ‘os = std::cout’ resolved the issue.
+    std::ostream& display(std::ostream& os = std::cout) const;
+
+Invalid write of size 8:
+set_powerlist();
+m_powerlist = new Power[m_num_powers];
+    When I allocated the memory, I only had enough places to store data, 
+    and then +1 solved the issue.
+    m_powerlist = new Power[m_num_powers + 1];
+
+
+Operator overloading is difficult for me, 
+especially when calling multiple modules at the same time.

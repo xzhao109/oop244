@@ -6,7 +6,7 @@
 // Section    :  ZAA
 // Date       :  Jun 18
 /////////////////////////////////////////////////////////
-#define _CRT_SECURE_NO_WARNINGS 
+#define _CRT_SECURE_NO_WARNINGS
 #include "Chapter.h"
 
 #include <cstring>

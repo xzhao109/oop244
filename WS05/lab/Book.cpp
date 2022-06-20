@@ -59,11 +59,7 @@ Book& Book::operator++(int) {
     return *this = temp;
 }
 int Book::add_chapter(Chapter* chapter) {
-    int i = 0;
-    while (*m_chapters[i]) {
-        i++;
-    }
-    m_chapters[i] = *chapter;
+    m_chapters[m_num_chapters] = *chapter;
     m_num_pages += chapter->getPages();
     return ++m_num_chapters;
 }
