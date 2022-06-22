@@ -35,7 +35,6 @@ void Hero::deallocate() {
     m_powerlist = nullptr;
 }
 
-// init function
 Hero& Hero::set(const char* name, const Power* powerlist, const int num_powers) {
     deallocate();
     if (name && name[0] && num_powers > 0) {
@@ -64,7 +63,6 @@ Hero& Hero::set_powerlist(const Power* powerlist) {
     return *this;
 }
 
-// setter function
 Hero& Hero::add_powerlist(Power* powerlist) {
     m_powerlist[m_num_powers] = *powerlist;
     ++m_num_powers;
@@ -75,12 +73,11 @@ Hero& Hero::operator+=(Power& powerlist) {
     add_powerlist(&powerlist);
     return *this;
 }
-Hero& Hero::operator-=(int value) {
+Hero& Hero::operator-=(const int value) {
     m_lv_powers -= value;
     return *this;
 }
 
-// getter function
 std::ostream& Hero::display(std::ostream& os) const {
     cout.setf(std::ios::left);
     os << "Name: " << m_name << endl;
@@ -93,10 +90,10 @@ int Hero::get_powerlevel() const {
 }
 
 // helper function
-bool operator<(Hero& lhero, Hero& rhero) {
+bool operator<(const Hero& lhero, const Hero& rhero) {
     return lhero.get_powerlevel() - rhero.get_powerlevel() < 0;
 }
-bool operator>(Hero& lhero, Hero& rhero) {
+bool operator>(const Hero& lhero, const Hero& rhero) {
     return lhero.get_powerlevel() - rhero.get_powerlevel() > 0;
 }
 void operator>>(Power& powerlist, Hero& hero) {

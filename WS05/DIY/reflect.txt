@@ -10,10 +10,10 @@
 < /Part1 - Lab>
 Citation:
 By YU HSIN FANG.
-I was able to understand how add_chapter() with her help.
+I was able to understand how add chapter with her help.
 
 add_chapter();
-    I struggled with this feature for a long time, 
+    I struggled with this function for a long time, 
     and at first I didn't understand why I had to do it. 
     I later realized why I had to do it.
 

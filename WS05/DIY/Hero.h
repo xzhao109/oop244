@@ -26,24 +26,21 @@ class Hero {
     void setEmpty();
     void deallocate();
 
-    // init function
     Hero& set(const char* name, const Power* powerlist, const int num_powers);
     Hero& set_powerlevel(const Power* powerlist, const int num_powers);  // also update
     Hero& set_powerlist(const Power* powerlist);
 
-    // setter function
     Hero& add_powerlist(Power* powerlist);
     Hero& operator+=(Power& powerlist);
-    Hero& operator-=(int value);
+    Hero& operator-=(const int value);
 
-    // getter function
     std::ostream& display(std::ostream& os = std::cout) const;
     int get_powerlevel() const;
 };
 
 // helper function
-bool operator<(Hero& lhero, Hero& rhero);
-bool operator>(Hero& lhero, Hero& rhero);
+bool operator<(const Hero& lhero, const Hero& rhero);
+bool operator>(const Hero& lhero, const Hero& rhero);
 void operator>>(Power& powerlist, Hero& hero);
 void operator<<(Hero& hero, Power& powerlist);
 std::ostream& operator<<(std::ostream& os, const Hero& hero);
