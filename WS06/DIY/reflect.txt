@@ -1,0 +1,38 @@
+/////////////////////////////////////////////////////////
+// WorkSho#6  :  Part 2
+// Full Name  :  Xiaoyue Zhao
+// Student ID :  124899212
+// Email      :  xzhao109@myseneca.ca
+// Section    :  ZAA
+// Date       :  July 3
+/////////////////////////////////////////////////////////
+
+
+< /Part1 - Lab>
+The hardest part of this section feels like an understanding of file I/O. 
+ofstream is used for writing files, while ifstream is used for reading files.
+Once I understand this, numCount(), load(), etc. will be easier to understand.
+
+numberCount()/load():
+    At the beginning, I was confused about how to check whether the file had successfully opened 
+    and how to read the newline character, but then I tried to figure out the if conditions and get()
+    to determine whether the file was successfully opened and how many records were in the file. 
+
+operator+=():
+
+    This was also a bit hard to understand at the beginning. 
+
+    The main idea is:
+    First create a temporary object, then save the data of the current object into the temporary object.
+    Then add the new data to the temporary object, and finally delete the original object.
+    Copy the object with the new data added to the original object.
+    and then return the latest object (with the newly added data). 
+
+    This way, the original object has a new address and new data. 
+    This is also, I think, one of the most difficult functions.
+
+
+
+< /Part2 - DIY>
+    I think the difficulty is simpler than in Part 1.
+    This is mainly the synthesis of all the previous workshops.
