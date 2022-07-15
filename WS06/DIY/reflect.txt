@@ -19,7 +19,6 @@ numberCount()/load():
     to determine whether the file was successfully opened and how many records were in the file. 
 
 operator+=():
-
     This was also a bit hard to understand at the beginning. 
 
     The main idea is:
