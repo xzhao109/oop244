@@ -101,8 +101,8 @@ std::ostream& Basket::display(std::ostream& os) const {
         os << "The basket is empty!" << endl;
     } else {
         os << "Basket Content:" << endl;
-        cout.setf(ios::fixed);
-        cout.precision(2);
+        os.setf(ios::fixed);
+        os.precision(2);
         for (int i{0}; i < m_cnt; i++) {
             os.width(10);
             os << m_fruits[i].m_name << ": "

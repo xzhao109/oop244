@@ -7,3 +7,35 @@
 // Date       :  Jun 2
 /////////////////////////////////////////////////////////
 
+
+< /1 >
+Citation:
+By professor.
+
+in BirthDate module:
+in beginSearch():
+You helped me to create the file with the correct file address 
+and remove the fatal error (close the file).
+
+in readBirthDate():
+You helped me count the matching data and fixed another fatal bug (line68: i++).
+
+in sort():
+You helped me to remove the extra code.
+
+in Utils module:
+You helped me create class.
+
+Thank you.
+
+
+< /2 >
+This is my first time writing a reflection. I'm both happy and sad.
+
+The first lecture of the first week of this semester made me feel like C++ was hard. 
+Fortunately, I haven't given up yet. 
+I finally digested the knowledge in the first two weeks after watching many videos and reading articles.
+
+I appreciate your help, professor. 
+After I spoke to you on the call last time, it helped me a lot.
+Thank you again.
