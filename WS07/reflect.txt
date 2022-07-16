@@ -1,0 +1,65 @@
+/////////////////////////////////////////////////////////
+// WorkSho#7  :  Part 2
+// Full Name  :  Xiaoyue Zhao
+// Student ID :  124899212
+// Email      :  xzhao109@myseneca.ca
+// Section    :  ZAA
+// Date       :  July 15
+/////////////////////////////////////////////////////////
+
+
+< Milestone >
+Milestone#1 was more difficult with the Menu module. 
+The most challenging part for me was understanding the 3 display() methods. 
+
+In the beginning, I didn't know how to store the values properly, 
+so I didn't understand how the display values were implemented. 
+I later defined two MenuItem members and stored the values through the m_content member. 
+
+    class MenuItem {
+        char* m_content{};
+    }
+
+    class Menu {
+        MenuItem m_title{};
+        MenuItem* m_item[MAX_MENU_ITEMS]{};
+    }
+
+Since Menu class can access MenuItem class, 
+it can directly display the data stored in m_content, so only 2 display() methods are actually needed.
+
+    std::ostream& displayTitle(std::ostream& os = std::cout) const;
+    std::ostream& display(std::ostream& os = std::cout) const;
+
+
+
+< Workshop >
+Set default value for m_district variable:
+I always wanted to try to set default values in the .h file. 
+
+    char m_district[MAX_DISTRICT_LENGTH + 1]{"Unassigned"};
+
+I ran it successfully in local at first, but it failed when I submitted matirx,
+so I finally went back to the .cpp file to set default values for m_district variable.
+
+    MemberParliament::MemberParliament(const char* id, const int age) {
+        strcpy(m_district, "Unassigned");
+    }
+
+In the Minister class, the more difficult part is constructors and 
+initialization of derived classes and calling inherited methods.
+
+Because the Minister class only defines 3 members, 
+we need to call the mp constructor to set the remaining 2 members.
+
+    Minister::Minister(const char* id, const int age, const double year,
+                    const char* name, const char* district)
+        : MemberParliament{id, age} { 
+        }
+
+Derived classes that want to call the base class just need to make a normal call, 
+but need to use the scope resolution operator (::) 
+so that we can reuse the code instead of redefining it.
+
+    NewDistrict(district); // redifine
+    MemberParliament::NewDistrict(district); // reuse
