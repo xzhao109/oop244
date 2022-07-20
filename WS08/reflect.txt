@@ -1,0 +1,33 @@
+/////////////////////////////////////////////////////////
+// WorkSho#8  :  Part 2
+// Full Name  :  Xiaoyue Zhao
+// Student ID :  124899212
+// Email      :  xzhao109@myseneca.ca
+// Section    :  ZAA
+// Date       :  July 20
+/////////////////////////////////////////////////////////
+
+
+< Milestone >
+
+For the ms2 part, the more difficult function is run(). 
+I spent a long time trying to fix this function and finally solved the problem with if-else. 
+Despite the hints in the documentation, 
+but I insisted on using switch statement and tried for a long time.
+
+    LibApp::void run();
+
+This is also a mistake I often made in the past; 
+that is, I did not figure out what exactly I wanted to do, and then I rushed to do it，
+and ended up wasting a lot of time.
+
+
+
+< Workshop >
+
+The complicated part of the workshop is to understand how to properly 
+call the functions of the base class. 
+
+    bool Account::credit(double);
+    bool Account::debit(double);
+    void ChequingAccount::monthEnd();
