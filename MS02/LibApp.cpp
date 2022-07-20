@@ -51,7 +51,7 @@ void LibApp::newPublication() {
     cout << "Adding new publication to library\n";
     if (confirm("Add this publication to library?")) {
         m_changed = true;
-        cout << "Publication added" << endl;
+        cout << "Publication added\n";
     }
 }
 void LibApp::removePublication() {
@@ -59,7 +59,7 @@ void LibApp::removePublication() {
     search();
     if (confirm("Remove this publication from the library?")) {
         m_changed = true;
-        cout << "Publication removed" << endl;
+        cout << "Publication removed\n";
     }
 }
 void LibApp::checkOutPub() {
