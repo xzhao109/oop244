@@ -1,12 +1,3 @@
-/////////////////////////////////////////////////////////
-// WorkSho#9  :  Part 1
-// Full Name  :  Xiaoyue Zhao
-// Student ID :  124899212
-// Email      :  xzhao109@myseneca.ca
-// Section    :  ZAA
-// Date       :  July 27
-/////////////////////////////////////////////////////////
-#ifndef SDDS_FULLNAME_H
 #define SDDS_FULLNAME_H
 #include "Name.h"
 
