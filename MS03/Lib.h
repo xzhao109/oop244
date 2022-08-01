@@ -1,3 +1,11 @@
+/////////////////////////////////////////////////////////
+// Milestone  :  3
+// Full Name  :  Xiaoyue Zhao
+// Student ID :  124899212
+// Email      :  xzhao109@myseneca.ca
+// Section    :  ZAA
+// Date       :  July 29
+/////////////////////////////////////////////////////////
 #ifndef SDDS_LIB_H
 #define SDDS_LIB_H
 

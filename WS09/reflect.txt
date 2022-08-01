@@ -1,0 +1,31 @@
+/////////////////////////////////////////////////////////
+// WorkSho#9  :  Part 2
+// Full Name  :  Xiaoyue Zhao
+// Student ID :  124899212
+// Email      :  xzhao109@myseneca.ca
+// Section    :  ZAA
+// Date       :  July 29
+/////////////////////////////////////////////////////////
+
+
+< Workshop >
+
+I was stuck for a long time on a function that I didn't think was broken.
+My focus is always on other functions that I find more difficult. 
+
+Like:
+    virtual std::ostream& display(std::ostream& ostr = std::cout) const;
+    virtual std::istream& read(std::istream& istr = std::cin);
+
+And during the bug fixing process, I never thought there was an issue with the function.
+I've encountered this experience many times in my learning of CPP, and it's really frustrating.
+
+In the beginning：
+    FullName::operator bool() const {
+        return !m_lastname && !Name::getName();
+    }
+
+For now:
+    FullName::operator bool() const {
+        return m_lastname && Name::getName();
+    }

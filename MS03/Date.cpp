@@ -6,7 +6,8 @@ using namespace std;
 #include "Date.h"
 
 namespace sdds {
-bool sdds_test = false;  // ms3:Add the following global variable
+// ms3: Add the following global variable
+bool sdds_test = false;
 int sdds_year = 2022;
 int sdds_mon = 8;
 int sdds_day = 7;
