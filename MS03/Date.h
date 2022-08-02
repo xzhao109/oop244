@@ -58,7 +58,7 @@ bool operator<(const Date& ldate, const Date& rdate);
 bool operator>(const Date& ldate, const Date& rdate);
 int operator-(const Date& ldate, const Date& rdate);
 
-// Add the following to the bottom of the sdds namespace
+// ms3:Add the following to the bottom of the sdds namespace
 extern bool sdds_test;
 extern int sdds_year;
 extern int sdds_mon;

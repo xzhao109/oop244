@@ -88,8 +88,9 @@ Publication::operator const char*() const {
 int Publication::getRef() const {
     return m_libRef;
 }
+// Streamable pure virtual function implementations
 bool Publication::conIO(std::ios& io) const {
-    return (&io == &std::cin || &io == &std::cout);
+    return (&io == &cin || &io == &cout);
 }
 ostream& Publication::write(ostream& os) const {
     if (m_title && m_shelfId[0] && m_date.errCode() == 0) {
@@ -122,7 +123,7 @@ std::istream& Publication::read(std::istream& is) {
         cout << "Shelf No: ";
         is.getline(shelfId, SDDS_SHELF_ID_LEN + 1);
         if (strlen(shelfId) != SDDS_SHELF_ID_LEN) {
-            is.setstate(std::ios::failbit);
+            is.setstate(ios::failbit);
         }
         cout << "Title: ";
         is.getline(title, SDDS_TITLE_WIDTH + 1);
@@ -138,7 +139,7 @@ std::istream& Publication::read(std::istream& is) {
         is >> date;
     }
     if (date.errCode() != 0) {
-        is.setstate(std::ios::failbit);
+        is.setstate(ios::failbit);
     }
     if (is) {  // istr is in a valid state
         set(membership);

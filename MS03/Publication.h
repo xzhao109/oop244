@@ -47,6 +47,7 @@ class Publication : public Streamable {
     operator const char*() const;
     int getRef() const;
 
+    // Streamable pure virtual function implementations
     bool conIO(std::ios& io) const;
     std::ostream& write(std::ostream& os) const;
     std::istream& read(std::istream& is);
