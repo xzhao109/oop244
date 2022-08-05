@@ -1,0 +1,36 @@
+// Name: Xiaoyue Zhao
+// ID: 124899212
+// Email: xzhao109@myseneca.ca
+// Date: Aug 5
+// Section: ZAA
+//
+
+
+// Find with 3 parameters
+// to check if a key value matches an array item at a provided index Arguments
+// return true if the element at index i of the array equals the key
+
+    // >> find(cCol, ii, "Hearts")
+    
+
+// Find with 4 parameters
+// goes through all the elements of the array of objects
+// checks if the keys are comparable to the array object
+// returns an int that represents the index of a found item that matches the 2 search keys
+// returns -1 if no successful matches were found
+
+    // index = find(cCol, cCol.size(), valuesToSearch[ii], suits[ii]);
+
+
+// Insertion operator
+// Lists all the elements of an array.
+// It will iterate over every item in the collection and insert it into the ostream parameter.
+// return ostream  at end.
+
+    // >> cout << cCol;
+
+
+// Load Collection
+// It will call the overloaded += operator in the collections class to add the new item.
+
+    // >> loadCollection(cCol, C[ii]);
